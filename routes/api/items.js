@@ -12,6 +12,8 @@ const Item = require('../../models/Item');
 router.get('/', (req, res) => {
     Item.find()  
         .then(items => res.json(items))
+        .catch(err => res.status(500).send("There was a problem finding the items.", err))
+
 });
 
 /*
@@ -29,7 +31,9 @@ router.post('/', (req, res) => {
         meaning 
     });
 
-    newItem.save().then(item => res.json(item));
+    newItem.save()
+        .then(item => res.json(item))
+        .catch(err => res.status(500).send("There was a problem finding the items.", err))
 });
 
 /*
@@ -37,16 +41,22 @@ router.post('/', (req, res) => {
     @desc   update an item
     @access Public
 */
-router.put('/', (req, res) => {
-    console.log(req.body);
+router.put('/:id', async (req, res) => {
+    
     const { word, grammar, meaning } = req.body;
-    const newItem = new Item({
+    Item.findByIdAndUpdate(req.params.id, {
         word,
         grammar,
-        meaning 
-    });
-
-    newItem.save().then(item => res.json(item));
+        meaning
+    }, {new: true})
+    .then(item => {
+        if(!item){
+            return res.status(404).send({
+                message: `The word ${req.params.id} not found. Try creating!`
+            })
+        }
+        res.send(item)
+    }).catch(err => res.status(404).send({message: err.message}))
 });
 
 /*
