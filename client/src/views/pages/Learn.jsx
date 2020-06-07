@@ -1,7 +1,13 @@
+import { cardsData } from '../../redux/testData';
+
 import { makeStyles } from '@material-ui/core/styles';
 import React, { useEffect, useState, Fragment } from 'react';
-
-import Card from '../components/Card';
+import AppBar from '../components/AppBar';
+import CardList from '../components/learn/CardList';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 
 const useStyles = makeStyles({
     container: {
@@ -12,52 +18,59 @@ const useStyles = makeStyles({
     }
 })
 
-const data = [
-    {
-        id: 0, 
-        img: "https://source.unsplash.com/dddQHervE04/275X140",
-        category: "Common Word (lvl. 6)",
-        word: "Ingratiate",
-        grammar: "adjective",
-        meaning: "gain favor with somebody by deliberate efforts",
-    },
-    {
-        id: 0,
-        img: "https://source.unsplash.com/63YVMrL2d6g/275X140",
-        category: "Common Word (lvl. 2)",
-        word: "Ephemeral",
-        grammar: "verb",
-        meaning: "lasting a very short time",
-    },
-    {
-        id: 2,
-        img: "https://source.unsplash.com/jeRdxTviubM/275X140",
-        category: "Common Word (lvl. 2)",
-        word: "Predeliction",
-        grammar: "noun",
-        meaning: "a strong liking",
-    },
-    {
-        id: 3,
-        img: "https://source.unsplash.com/JAg3uVD_Z1k/275X140",
-        category: "X-word",
-        word: "Exercate",
-        grammar: "verb",
-        meaning: "curse and hiss; dislike and criticize strongly",
-    },
-    
-]
+
 const Learn = () => {
 
     const classes = useStyles();
+    const sections = [
+        {
+            name: "Suggested Revisions",
+            data: cardsData,
+        },
+        {
+            name: "Popular Mistakes",
+            data: cardsData,
+        },
+        {
+            name: "Unchartered Territory",
+            data: cardsData,
+        },
+    ];
+    const [openedSection, openSection] = useState(null);
 
     return (
-        <div className={classes.container}>
+        <div>
+            <AppBar />
+            <FormControl className={classes.formControl}>
+                <Select
+                    native
+                    value={openedSection}
+                    onChange={event =>openSection(event.target.value===''?null:event.target.value)}
+                    inputProps={{
+                        name: 'Section',
+                        id: 'section-native-simple',
+                    }}
+                >
+                    <option aria-label="None" value="" />
+                    {
+                        sections.map(section => 
+                            <option value={section.name}>{section.name}</option>
+                        )
+                    }
+                </Select>
+            </FormControl>
             {
-                data.map(item => 
-                    <Card data={item}/>)
+                sections
+                    .filter(section => openedSection === null || section.name === openedSection)
+                    .map(section =>
+                        <CardList
+                            title={section.name}
+                            cardsData={section.data}
+                            openSection={openSection}
+                            openedSection={openedSection}
+                        />
+                    )
             }
-            
         </div>
     )
 }

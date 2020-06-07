@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Route , BrowserRouter, Switch } from 'react-router-dom';
 
 import Home from './views/pages/Home';
@@ -7,7 +7,7 @@ import Detail from './views/pages/Detail';
 
 function App(){
     return(
-        <div className="App">
+        <Fragment className="App">
             <BrowserRouter>
                 <Switch>
                     <Route exact path='/' component={Home}/>
@@ -16,7 +16,7 @@ function App(){
                     {/* <Route path='*' component={NotFound}/> */}
                 </Switch>
             </BrowserRouter>
-        </div>
+        </Fragment>
     )
 }
 export default App;

@@ -33,8 +33,6 @@ const useStyles = makeStyles({
 
 export default function WordCard(props) {
     const classes = useStyles();
-    const bull = <span className={classes.bullet}>•</span>;
-
     console.log(props);
     
     {/*"https://source.unsplash.com/pVmjvK44Dao/275X140"*/}
@@ -42,7 +40,7 @@ export default function WordCard(props) {
         <Card className={classes.root}>
             <CardMedia
                 className={classes.media}
-                image={props.data.img}                
+                image={props.data.img_url}                
                 title={props.data.word}
             />
             <CardContent>
