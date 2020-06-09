@@ -16,7 +16,7 @@ const useStyles = makeStyles({
     },
 });
 
-const Highlight = ({sentence, checkWord}) => (
+const Highlight = ({sentence='', checkWord}) => (
     <Typography variant="body2" component="p"
         dangerouslySetInnerHTML={{
         __html:
