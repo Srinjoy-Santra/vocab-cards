@@ -1,5 +1,7 @@
-import { cardsData } from '../../redux/testData';
-import { sectionActions } from "../../redux/section/";
+//import { cardsData } from '../../redux/testData';
+import { sectionActions  } from "../../redux/section/";
+import { learnActions } from "../../redux/learn/";
+import PAGE_CONSTANTS from "../../utils/pagination";
 
 import { makeStyles } from '@material-ui/core/styles';
 import React, { useEffect, useState, Fragment } from 'react';
@@ -12,6 +14,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import { Grid } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
+import WordPagination from "../components/learn/Pagination";
 
 const useStyles = makeStyles({
     container: {
@@ -35,10 +38,32 @@ const Learn = () => {
         useSelector(state => state.section.current)
     );
 
+    const cardsData = useSelector(state => state.learn.all);
+    const page = useSelector(state => state.section.page);
+
+    useEffect(() => {
+        (async () => {
+            await learnActions.getWords(dispatch, page)
+             
+        })()
+    }, [page])
+
     const handleSectionChange = (event) => {
         const sectionName = event.target.value;
         openSection(sectionName);
         sectionActions.setSection(dispatch, sectionName);
+    }
+
+    const { START, END, RANGE } = PAGE_CONSTANTS;
+    const handleMovePage = (isNext) => {
+        
+        if(isNext && (page+1)*RANGE < END){
+            sectionActions.setPage(dispatch, page+1)
+        }
+        else if ((page-1)*RANGE >= START){
+            sectionActions.setPage(dispatch, page-1)
+        }
+            
     }
 
     const sections = [ "All", "Suggested Revisions", "Popular Mistakes", "Unchartered Territory" ];
@@ -68,14 +93,15 @@ const Learn = () => {
                     </FormControl>
                 </Grid>
             </Grid>
-           
-            <CardList
+           {
+                cardsData &&
+               <CardList
                 title={openedSection}
                 cardsData={cardsData}
                 openSection={openSection}
-            />
-
-            
+                />
+           }
+           <WordPagination handleMovePage={handleMovePage} page={page}/>
         </div>
     )
 }

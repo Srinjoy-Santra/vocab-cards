@@ -57,12 +57,13 @@ export default function WordPaper(props){
             <Typography variant="body2" component="p">
                 {props.data.antonyms}
             </Typography>
-            <Typography className={classes.pos} color="textSecondary">
-                Synonyms
-            </Typography>
             <Typography variant="body2" component="p">
                 {props.data.synonyms}
             </Typography>
+            <Typography className={classes.pos} color="textSecondary">
+                Synonyms
+            </Typography>
+            
         </Paper>
     )
 }

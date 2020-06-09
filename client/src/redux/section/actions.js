@@ -1,8 +1,5 @@
 import types from './types';
 
-
-
-
 const setSection = (dispatch, sectionName) =>
     dispatch(
         {
@@ -10,7 +7,17 @@ const setSection = (dispatch, sectionName) =>
             payload: sectionName
         });
 
-export default {
-    setSection
-}
-        
+
+ 
+const setPage = (dispatch, pageNumber) =>
+    dispatch(
+        {
+            type: types.CHANGE_PAGE,
+            payload: pageNumber
+        }
+    )
+
+    export default {
+        setSection,
+        setPage
+    }

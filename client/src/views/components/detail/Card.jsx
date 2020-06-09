@@ -7,6 +7,8 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
+import { getImgURL } from '../../../utils/unsplashImage'
+
 const useStyles = makeStyles({
     root: {
         maxWidth: 550,
@@ -39,7 +41,7 @@ export default function WordCard(props) {
         <Card className={classes.root}>
             <CardMedia
                 className={classes.media}
-                image={props.data.img_url}                
+                image={getImgURL(props.data.img_url)}                
                 title={props.data.word}
             />
             <CardContent>

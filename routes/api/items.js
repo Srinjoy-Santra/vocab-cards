@@ -10,9 +10,32 @@ const Item = require('../../models/Item');
     @access Public
 */
 router.get('/', (req, res) => {
+    let { start, range } = req.query;
     Item.find()  
-        .then(items => res.json(items))
+        .then(items => {
+            items = items.sort()
+
+            if(start && range){
+                start = parseInt(start)
+                range = parseInt(range)
+                items = items.slice(start, start + range)
+            }
+                    
+            return res.json(items)
+        })
         .catch(err => res.status(500).send("There was a problem finding the items.", err))
+
+});
+
+/*
+    @route  GET api/items/:id
+    @desc   Get an item based on id
+    @access Public
+*/
+router.get('/:id', (req, res) => {
+    Item.findById(req.params.id)
+        .then(item => res.json(item))
+        .catch(err => res.status(500).send(`There was a problem finding the item with ${req.params.id}.`, err))
 
 });
 

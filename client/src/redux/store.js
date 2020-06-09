@@ -6,8 +6,13 @@ import * as reducers from "./index";
 
 export const INITIAL_STATE = {
     section: {
-        current: "All"
+        current: "All",
+        page: 0
     },
+    learn: {
+        current: {},
+        all: []
+    }
     /* dePaymentsState:{
         categories: {},
         lastSelectedCategory: {},

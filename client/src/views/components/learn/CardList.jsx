@@ -21,8 +21,8 @@ const CardList = (props) => {
             
             <div className={classes.container}>
                 {
-                    props.cardsData.sort(() => Math.random() - 0.5).map(item =>
-                        <Card data={item} />)
+                    props.cardsData.map(item =>
+                        <Card data={item} key={item._id}/>)
                 }
             </div>
         </Fragment>
