@@ -38,6 +38,7 @@ const getWord = (dispatch, id) =>
 
 export default {
     getWords,
-    getWord
+    getWord,
+    wordsInstance
 }
         

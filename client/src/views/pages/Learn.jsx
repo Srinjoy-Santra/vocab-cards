@@ -1,8 +1,3 @@
-//import { cardsData } from '../../redux/testData';
-import { sectionActions  } from "../../redux/section/";
-import { learnActions } from "../../redux/learn/";
-import PAGE_CONSTANTS from "../../utils/pagination";
-
 import { makeStyles } from '@material-ui/core/styles';
 import React, { useEffect, useState, Fragment } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -14,6 +9,11 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import { Grid } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
+
+//import { cardsData } from '../../redux/testData';
+import { sectionActions  } from "../../redux/section/";
+import { learnActions } from "../../redux/learn/";
+import PAGE_CONSTANTS from "../../utils/pagination";
 import WordPagination from "../components/learn/Pagination";
 
 const useStyles = makeStyles({
