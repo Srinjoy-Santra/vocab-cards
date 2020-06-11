@@ -52,18 +52,17 @@ export default function WordPaper(props){
                 {props.data.mnemonic}
             </Typography>
             <Typography className={classes.pos} color="textSecondary">
-                Antonyms
-            </Typography>
-            <Typography variant="body2" component="p">
-                {props.data.antonyms}
+                Synonyms
             </Typography>
             <Typography variant="body2" component="p">
                 {props.data.synonyms}
             </Typography>
             <Typography className={classes.pos} color="textSecondary">
-                Synonyms
+                Antonyms
             </Typography>
-            
+            <Typography variant="body2" component="p">
+                {props.data.antonyms}
+            </Typography>
         </Paper>
     )
 }

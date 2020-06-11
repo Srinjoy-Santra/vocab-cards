@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function ComboBox() {
+const SearchAutocomplete = () => {
 
   const classes = useStyles();
   const history = useHistory();
@@ -90,40 +90,18 @@ export default function ComboBox() {
             inputProps={{ 'aria-label': 'search', ...params.inputProps } }
             onSelect={(event)=>{
               let value = event.target.value;
-              console.log(value);
-              if(value && value.length > 0)
-                history.push(`/learn/${value.toLowerCase()}`);
+              let isWordInDB = data.map(item => item.title).includes(value);
+              if(value && isWordInDB)
+                history.replace(`/learn/${value.toLowerCase()}`);
             }}
           />
         </div>
-        
       }
     />
   );
 }
 
-const top100Films = [
-  { title: 'The Shawshank Redemption', year: 1994 },
-  { title: 'The Godfather', year: 1972 },
-  { title: 'The Godfather: Part II', year: 1974 },
-  { title: 'The Dark Knight', year: 2008 },
-  { title: '12 Angry Men', year: 1957 }
-];
-
-{/* <div className={classes.search}>
-          <div className={classes.searchIcon}>
-            <SearchIcon />
-          </div>
-          <InputBase
-            {...params}
-            placeholder="Search…"
-            classes={{
-              root: classes.inputRoot,
-              input: classes.inputInput,
-            }}
-            inputProps={{ 'aria-label': 'search' }}
-          />
-        </div> */}
+export default SearchAutocomplete
 
 /* Issues 
   https://github.com/mui-org/material-ui/issues/18334

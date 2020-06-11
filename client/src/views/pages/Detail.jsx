@@ -44,10 +44,10 @@ export default function Detail(props) {
             await learnActions.getWord(dispatch, word)
              
         })()
-    }, [])
+    }, [word])
 
     return (
-        <div className={classes.root}>
+        <div className={classes.root} key={word}>
             <AppBar />
             <Grid container spacing={2} className={classes.container}>
                 <Grid item xs={12} md={6} className={classes.card}>

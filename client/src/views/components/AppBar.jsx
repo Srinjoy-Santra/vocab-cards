@@ -7,6 +7,7 @@ import { fade, makeStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 
 import SearchAutocomplete from "./topbar/SearchAutocomplete";
+import ProfileMenu from "./topbar/ProfileMenu";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,6 +45,7 @@ export default function SearchAppBar() {
             {document.title}
           </Typography>
           <SearchAutocomplete/>
+          <ProfileMenu/>
         </Toolbar>
       </AppBar>
     </div>
