@@ -6,6 +6,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
 
 import { getImgURL } from '../../../utils/unsplashImage'
 
@@ -30,37 +31,67 @@ const useStyles = makeStyles({
         height: 280,
         width: 550
     },
+    opos: {
+        marginTop: 12,
+    },
+    meaning: {
+        margin: 'auto'
+    },
+    nyms:{
+        paddingRight: 12,
+    }
 });
 
 export default function WordCard(props) {
     const classes = useStyles();
-    console.log(props);
     
-    {/*"https://source.unsplash.com/pVmjvK44Dao/275X140"*/}
+    const { img_url, category, word, meaning, grammar, synonyms, antonyms } = props;
+    
     return (
         <Card className={classes.root}>
             <CardMedia
                 className={classes.media}
-                image={getImgURL(props.data.img_url)}                
-                title={props.data.word}
+                image={getImgURL(img_url)}
+                title={word}
             />
             <CardContent>
-                <Typography className={classes.title} color="textSecondary" gutterBottom>
-                    {props.data.category}
-                </Typography>
-                <Typography variant="h5" component="h2">
-                    {props.data.word}
-                </Typography>
-                <Typography className={classes.pos} color="textSecondary">
-                    {props.data.grammar}
-                </Typography>
-                <Typography variant="body2" component="p">
-                    {props.data.meaning}
-                </Typography>
+                <Grid container>
+                    <Grid item xs={12} md={6}>
+                        <Typography className={classes.title} color="textSecondary" gutterBottom>
+                            {category}
+                        </Typography>
+                        <Typography variant="h4" component="h2" color="secondary">
+                            {word}
+                        </Typography>
+                        <Typography className={classes.pos} color="textSecondary">
+                            {grammar}
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={12} md={6} className={classes.meaning}>
+                        <Typography variant="body1" component="p" >
+                            {meaning}
+                        </Typography>
+                    </Grid>
+                </Grid>
+                <Grid container>
+                    <Grid item xs={12} md={6} className={classes.nyms}>
+                        <Typography className={classes.opos} color="textSecondary">
+                            Synonyms
+                        </Typography>
+                        <Typography variant="body2" component="p">
+                            {synonyms.join(', ')}
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={12} md={6}>
+                        <Typography className={classes.opos} color="textSecondary">
+                            Antonyms
+                        </Typography>
+                        <Typography variant="body2" component="p">
+                            {antonyms.join(', ')}
+                        </Typography>
+                    </Grid>
+                </Grid>
             </CardContent>
-            <CardActions>
-                <Button size="small">Learn More</Button>
-            </CardActions>
         </Card>
     );
 }

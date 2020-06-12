@@ -6,8 +6,7 @@ const ItemSchema = new Schema({
     _id: String,
     word: {
         type: String,
-        required: true,
-        unique: true
+        required: true
     },
     grammar: {
         type: String,
@@ -17,9 +16,22 @@ const ItemSchema = new Schema({
         type: String,
         required: true
     },
-    sentence: String,
     mnemonic: String,
-    imageUrl: String,
+    img_url: String,
+    category: String,
+    difficulty: String,
+    cartoon: String,
+    synonyms: [String],
+    antonyms: [String],
+    movie_links: [{
+        name: String,
+        link: String
+    }],
+    tv_links: [{
+        name: String,
+        link: String
+    }],
+    sentence: String,
 });
 
 module.exports = Item = mongoose.model('item', ItemSchema);  
