@@ -6,7 +6,9 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
+import { useDispatch } from 'react-redux';
 
+import { authActions } from "../../../redux/auth";
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormGroup from '@material-ui/core/FormGroup';
 import Switch from '@material-ui/core/Switch';
@@ -20,35 +22,33 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const auth = true;
-export default function ProfileMenu() {
+
+export default function ProfileMenu(props) {
     const classes = useStyles();
-    const [auth, setAuth] = React.useState(true);
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
 
-    const handleChange = (event) => {
-        setAuth(event.target.checked);
-    };
-
+    const dispatch = useDispatch();
+    const openAuthModal = () => {
+        authActions.setAuthModal(dispatch, true);
+    }
+    
     const handleMenu = (event) => {
         setAnchorEl(event.currentTarget);
     };
-
     const handleClose = () => {
         setAnchorEl(null);
     };
 
+    const handleLogout = () => {
+        setAnchorEl(null);
+        authActions.logout(dispatch);
+    }
+
     return (
         <Fragment>
-            <FormGroup>
-                <FormControlLabel
-                    control={<Switch checked={auth} onChange={handleChange} aria-label="login switch" />}
-                    label={auth ? 'Logout' : 'Login'}
-                />
-            </FormGroup>
             {
-                auth ?
+                props.auth ?
                     <Fragment>
                         <IconButton
                             aria-label="quiz feature"
@@ -82,8 +82,8 @@ export default function ProfileMenu() {
                             open={open}
                             onClose={handleClose}
                         >
-                            <MenuItem onClick={handleClose}>Profile</MenuItem>
                             <MenuItem onClick={handleClose}>My account</MenuItem>
+                            <MenuItem onClick={handleLogout}>Log out</MenuItem>
                         </Menu>
                     </Fragment>
                     :
@@ -91,7 +91,7 @@ export default function ProfileMenu() {
                         <IconButton
                             aria-label="login current user"
                             aria-controls="button-appbar"
-                            onClick={()=>console.log("login")}
+                            onClick={openAuthModal}
                             color="inherit"
                         >
                             <PersonAddIcon />

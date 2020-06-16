@@ -14,7 +14,6 @@ router.get('/', (req, res) => {
     let { start, range } = req.query;
     Item.find()  
         .then(items => {
-            items = items.sort()
 
             if(start && range){
                 start = parseInt(start)

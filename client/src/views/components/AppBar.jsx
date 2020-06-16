@@ -5,6 +5,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
+import { useSelector } from 'react-redux';
 
 import SearchAutocomplete from "./topbar/SearchAutocomplete";
 import ProfileMenu from "./topbar/ProfileMenu";
@@ -26,8 +27,9 @@ const useStyles = makeStyles((theme) => ({
   
 }));
 
-export default function SearchAppBar() {
+export default function SearchAppBar(props) {
   const classes = useStyles();
+  const auth = useSelector(state => state.auth.isAuthenticated);
 
   return (
     <div className={classes.root}>
@@ -39,13 +41,13 @@ export default function SearchAppBar() {
             color="inherit"
             aria-label="open drawer"
           >
-            <MenuIcon /> {/* Change to App logo later */}
+            <MenuIcon /> 
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
             {document.title}
           </Typography>
-          <SearchAutocomplete/>
-          <ProfileMenu/>
+          <SearchAutocomplete auth={auth}/>
+          <ProfileMenu auth={auth}/>
         </Toolbar>
       </AppBar>
     </div>

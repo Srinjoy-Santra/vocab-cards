@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link as RouterLink} from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -7,8 +7,10 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { getImgURL } from '../../../utils/unsplashImage'
+import { alertActions } from "../../../redux/alert";
 
 const useStyles = makeStyles({
     root: {
@@ -42,8 +44,22 @@ const useStyles = makeStyles({
 
 export default function WordCard(props) {
     const classes = useStyles();
+    const history = useHistory();
+    const dispatch = useDispatch();
+    const auth = useSelector(state => state.auth.isAuthenticated);
     
-    {/*"https://source.unsplash.com/pVmjvK44Dao/275X140"*/}
+    const handleLearnMore = () => {
+        if(auth)
+            history.push(`/learn/${props.data._id}`)
+        else alertActions.setAlert(dispatch, {
+            msg: {
+              msg: "Login to learn more"
+            },
+            status: 0,
+            id: 'Learn-More-Disabled',
+            severity: 'info'
+          })
+    }
     return (
         <Card className={classes.root}>
             <CardMedia
@@ -70,8 +86,7 @@ export default function WordCard(props) {
                     size="small"
                     variant="outlined"
                     color="secondary"
-                    component={RouterLink}
-                    to={`/learn/${props.data._id}`}
+                    onClick={handleLearnMore}
                 >
                     Learn More
                 </Button>

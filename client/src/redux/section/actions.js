@@ -17,7 +17,7 @@ const setPage = (dispatch, pageNumber) =>
         }
     )
 
-    export default {
-        setSection,
-        setPage
-    }
+export default {
+    setSection,
+    setPage
+}

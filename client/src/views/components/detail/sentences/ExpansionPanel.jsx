@@ -32,7 +32,7 @@ export default function SimpleExpansionPanel(props) {
             aria-controls="panel1a-content"
             id="panel1a-header"
           >
-            <Typography className={classes.heading}>GRE Edge</Typography>
+            <Typography className={classes.heading} color='secondary'>GRE Edge</Typography>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
             <Highlight sentence={ge} checkWord={word}/>
@@ -47,7 +47,7 @@ export default function SimpleExpansionPanel(props) {
               aria-controls="panel2a-content"
               id="panel2a-header"
             >
-              <Typography className={classes.heading}>The Economist</Typography>
+              <Typography className={classes.heading} color='secondary'>The Economist</Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
               <Highlight sentence={econ} checkWord={word}/>

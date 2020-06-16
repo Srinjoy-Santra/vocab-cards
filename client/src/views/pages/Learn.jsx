@@ -11,10 +11,11 @@ import { Grid } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 
 //import { cardsData } from '../../redux/testData';
-import { sectionActions  } from "../../redux/section/";
+import { sectionActions } from "../../redux/section/";
 import { learnActions } from "../../redux/learn/";
 import PAGE_CONSTANTS from "../../utils/pagination";
 import WordPagination from "../components/learn/Pagination";
+import AuthModal from "../components/AuthModal";
 
 const useStyles = makeStyles({
     container: {
@@ -44,7 +45,7 @@ const Learn = () => {
     useEffect(() => {
         (async () => {
             await learnActions.getWords(dispatch, page)
-             
+
         })()
     }, [page])
 
@@ -56,52 +57,58 @@ const Learn = () => {
 
     const { START, END, RANGE } = PAGE_CONSTANTS;
     const handleMovePage = (isNext) => {
-        
-        if(isNext && (page+1)*RANGE < END){
-            sectionActions.setPage(dispatch, page+1)
+
+        if (isNext && (page + 1) * RANGE < END) {
+            sectionActions.setPage(dispatch, page + 1)
         }
-        else if ((page-1)*RANGE >= START){
-            sectionActions.setPage(dispatch, page-1)
+        else if ((page - 1) * RANGE >= START) {
+            sectionActions.setPage(dispatch, page - 1)
         }
-            
+
     }
 
-    const sections = [ "All", "Suggested Revisions", "Popular Mistakes", "Unchartered Territory" ];
+    const sections = ["All", "Suggested Revisions", "Popular Mistakes", "Unchartered Territory"];
 
     return (
         <div>
             <AppBar />
             <Grid container>
-                <Grid item xs={10}>
-                    <Typography variant="h3" component="h3" align="center">
-                        { openedSection }
-                    </Typography>
-                </Grid>
-                <Grid item xs={2}>
-                    <FormControl className={classes.formControl}>
-                        <Select
-                            value={openedSection}
-                            onChange={handleSectionChange}
-                            autoWidth={true}
-                        >
-                            {
-                                sections.map(section => 
-                                    <MenuItem key={section} value={section}>{section}</MenuItem>
-                                )
-                            }
-                        </Select>
-                    </FormControl>
-                </Grid>
+                { false &&
+                    <Fragment>
+                        <Grid item xs={10}>
+                            <Typography variant="h3" component="h3" align="center">
+                                {openedSection}
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={2}>
+                            <FormControl className={classes.formControl}>
+                                <Select
+                                    value={openedSection}
+                                    onChange={handleSectionChange}
+                                    autoWidth={true}
+                                >
+                                    {
+                                        sections.map(section =>
+                                            <MenuItem key={section} value={section}>{section}</MenuItem>
+                                        )
+                                    }
+                                </Select>
+                            </FormControl>
+                        </Grid>
+                    
+                    </Fragment>
+                }
             </Grid>
-           {
+            {
                 cardsData &&
-               <CardList
-                title={openedSection}
-                cardsData={cardsData}
-                openSection={openSection}
+                <CardList
+                    title={openedSection}
+                    cardsData={cardsData}
+                    openSection={openSection}
                 />
-           }
-           <WordPagination handleMovePage={handleMovePage} page={page}/>
+            }
+            <WordPagination handleMovePage={handleMovePage} page={page} />
+            <AuthModal />
         </div>
     )
 }

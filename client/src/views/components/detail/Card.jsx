@@ -55,7 +55,7 @@ export default function WordCard(props) {
                 title={word}
             />
             <CardContent>
-                <Grid container>
+                <Grid container spacing={3}>
                     <Grid item xs={12} md={6}>
                         <Typography className={classes.title} color="textSecondary" gutterBottom>
                             {category}

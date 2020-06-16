@@ -4,8 +4,10 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
 import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 import { learnActions } from "../../../redux/learn";
+import { alertActions } from "../../../redux/alert";
 
 const useStyles = makeStyles((theme) => ({
   search: {
@@ -49,10 +51,11 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const SearchAutocomplete = () => {
+const SearchAutocomplete = (props) => {
 
   const classes = useStyles();
   const history = useHistory();
+  const dispatch = useDispatch();
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -91,8 +94,18 @@ const SearchAutocomplete = () => {
             onSelect={(event)=>{
               let value = event.target.value;
               let isWordInDB = data.map(item => item.title).includes(value);
-              if(value && isWordInDB)
-                history.replace(`/learn/${value.toLowerCase()}`);
+              if(value && isWordInDB){
+                if(props.auth) history.push(`/learn/${value.toLowerCase()}`);
+                else alertActions.setAlert(dispatch, {
+                  msg: {
+                    msg: "Login to avail search"
+                  },
+                  status: 0,
+                  id: 'Search-Disabled',
+                  severity: 'info'
+                })
+              }
+                
             }}
           />
         </div>

@@ -39,7 +39,7 @@ const useStyles = makeStyles({
     },
 });
 
-export default function Detail(props) {
+export default function Detail() {
 
     const classes = useStyles();
     const dispatch = useDispatch();
@@ -57,7 +57,7 @@ export default function Detail(props) {
         <div className={classes.root} key={word}>
             <AppBar />
             <Grid container spacing={2} className={classes.container}>
-                <Grid item xs={12} md={4} className={classes.card}>
+                <Grid item xs={12} lg={5} className={classes.card}>
                     { cardData.word &&
                         <Card
                             category={cardData.category}
@@ -70,7 +70,7 @@ export default function Detail(props) {
                         />
                     }
                 </Grid>
-                <Grid item className={classes.content} xs={12} md={3}>
+                <Grid item className={classes.content} xs={12} lg={3}>
                     { cardData.word && 
                         <Paper
                             word={cardData.word}
@@ -79,7 +79,7 @@ export default function Detail(props) {
                         />
                     }
                 </Grid>
-                <Grid item xs={12} md={5} >
+                <Grid item xs={12} lg={4} >
                     {
                         cardData.cartoon && cardData.movie_links
                         && cardData.tv_links &&

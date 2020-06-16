@@ -12,13 +12,20 @@ export const INITIAL_STATE = {
     learn: {
         current: {},
         all: []
+    },
+    auth: {
+        token: localStorage.getItem('token'),
+        isAuthenticated: false,
+        isLoading: false,
+        user: null,
+        openModal: false
+    },
+    alert: {
+        msg: null,
+        status: null,
+        id: null,
+        severity: null 
     }
-    /* dePaymentsState:{
-        categories: {},
-        lastSelectedCategory: {},
-        categoryMapping: {},
-    }, */
-   
 }
 
 export default function configureStore(initialState  = INITIAL_STATE) {

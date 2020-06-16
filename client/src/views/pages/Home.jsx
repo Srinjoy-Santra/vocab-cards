@@ -5,6 +5,10 @@ import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import CastForEducationIcon from '@material-ui/icons/CastForEducation';
 import Typography from '@material-ui/core/Typography';
 import { Link as RouterLink } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+
+import { authActions } from "../../redux/auth/";
+import AuthModal from "../components/AuthModal";
 
 const useStyles = makeStyles(theme => ({
     responsiveImage: {
@@ -33,6 +37,10 @@ const useStyles = makeStyles(theme => ({
 const Home = () => {
 
     const classes = useStyles();
+    const dispatch = useDispatch();
+    const openAuthModal = () => {
+        authActions.setAuthModal(dispatch, true);
+    }
 
     return (
         <div>
@@ -47,6 +55,7 @@ const Home = () => {
                         color="secondary"
                         className={classes.button}
                         startIcon={<PersonAddIcon />}
+                        onClick={openAuthModal}
                     >
                         Login
                     </Button>
@@ -62,6 +71,7 @@ const Home = () => {
                     </Button>
                 </div>
             </div>
+            <AuthModal/>
             <footer className={classes.footer}>
             <   Typography variant="p" component="p">
                     Currently v0.0.1. Released under the MIT License. Copyright © 2020 Vocab-Card.
