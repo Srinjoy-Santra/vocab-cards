@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
-import React, { useEffect, useState, Fragment } from 'react';
+import React, { Fragment } from 'react';
 import Card from './Card';
 
 const useStyles = makeStyles({

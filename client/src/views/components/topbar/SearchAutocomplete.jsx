@@ -60,10 +60,10 @@ const SearchAutocomplete = (props) => {
 
   useEffect(() => {
     (async () => {
-      let result = await axios.get('/api/items');
+      let result = await axios.get('/api/items?wordOnly=true');
       try{
       setData(result.data.map(item => (
-        {"title": item.word, "id":item._id}
+        {"title": item.word, "id":item.word.toLowerCase()}
       )));
       }
       catch(err){

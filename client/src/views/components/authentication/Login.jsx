@@ -6,6 +6,7 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import { useDispatch } from 'react-redux';
+import Divider from '@material-ui/core/Divider';
 
 import { authActions } from '../../../redux/auth';
 
@@ -95,10 +96,16 @@ const RegisterForm = (props) => {
                                         Submit
                                     </Button>
                                 </Grid>
-                                <Grid item style={{ marginTop: 16, marginRight: 0 }}>
+                                <Divider orientation="vertical" />
+                                <Grid item style={{ marginTop: 20 }}>
+                                    <Typography variant="subtitle1" component="p" color="textSecondary">
+                                        Not registered?
+                                    </Typography>
+                                </Grid>
+                                <Grid item style={{ marginTop: 16 }}>
                                     <Button
                                         variant="outlined"
-                                        color="primary"
+                                        color="secondary"
                                         onClick={props.toggle}
                                     >
                                         Sign up

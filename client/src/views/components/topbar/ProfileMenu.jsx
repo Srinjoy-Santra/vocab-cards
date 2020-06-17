@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -9,22 +8,10 @@ import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
 import { useDispatch } from 'react-redux';
 
 import { authActions } from "../../../redux/auth";
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormGroup from '@material-ui/core/FormGroup';
-import Switch from '@material-ui/core/Switch';
-
-const useStyles = makeStyles((theme) => ({
-    menuButton: {
-        marginRight: theme.spacing(2),
-    },
-    title: {
-        flexGrow: 1,
-    },
-}));
 
 
 export default function ProfileMenu(props) {
-    const classes = useStyles();
+
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
 
@@ -55,6 +42,7 @@ export default function ProfileMenu(props) {
                             aria-controls="menu-appbar"
                             onClick={console.log("Quiz")}
                             color="inherit"
+                            disabled
                         >
                             <QuestionAnswerIcon />
                         </IconButton>

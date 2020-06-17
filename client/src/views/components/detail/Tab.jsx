@@ -1,7 +1,7 @@
 import Cartoon from './TabPanels/Cartoon';
 import Video from './TabPanels/Video';
 
-import React, { Fragment } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
@@ -9,7 +9,6 @@ import Tab from '@material-ui/core/Tab';
 import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
 import TvIcon from '@material-ui/icons/Tv';
 import MovieIcon from '@material-ui/icons/Movie';
-import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme) => ({
   root: {

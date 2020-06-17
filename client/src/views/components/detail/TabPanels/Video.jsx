@@ -1,7 +1,7 @@
 import { getVideoUrl } from '../../../../utils/youtubeVideo';
 
 import { makeStyles } from '@material-ui/core/styles';
-import React, { Fragment } from 'react';
+import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 
@@ -30,7 +30,7 @@ export default function Video(props){
     return (
         <div className={classes.root}>
             <iframe className={classes.video}
-                src={getVideoUrl(videos[0].link)}>
+                src={getVideoUrl(videos[0].link)} title={word}>
             </iframe>
             <Typography variant="subtitle1" component="p">
                 Source: 

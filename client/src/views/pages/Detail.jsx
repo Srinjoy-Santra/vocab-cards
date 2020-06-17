@@ -42,7 +42,7 @@ const useStyles = makeStyles({
 export default function Detail() {
 
     const classes = useStyles();
-    const dispatch = useDispatch();
+    const [dispatch] = useDispatch();
     const { word } = useParams();
 
     const cardData = useSelector(state => state.learn.current);

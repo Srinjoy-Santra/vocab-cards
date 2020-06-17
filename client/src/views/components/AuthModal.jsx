@@ -1,13 +1,10 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import { useDispatch, useSelector } from 'react-redux';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
 
 import { authActions } from "../../redux/auth/";
 import RegisterForm from "./authentication/Register";
-import { Paper } from '@material-ui/core';
 import LoginForm  from "./authentication/Login";
 
 const top = 50, left = 50;

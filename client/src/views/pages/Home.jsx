@@ -1,5 +1,5 @@
-import React, { useEffect, useState, Fragment } from 'react';
-import { makeStyles, theme } from '@material-ui/core/styles';
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import CastForEducationIcon from '@material-ui/icons/CastForEducation';
@@ -44,7 +44,7 @@ const Home = () => {
 
     return (
         <div>
-            <img src="https://source.unsplash.com/JXb5j1vdWSI/1600X900" alt="Photo by Jr Korpa on Unsplash" className={classes.responsiveImage}></img>
+            <img src="https://source.unsplash.com/JXb5j1vdWSI/1600X900" alt="Jr Korpa on Unsplash" className={classes.responsiveImage}></img>
             <div className={classes.content}>
                 <Typography variant="h2" component="h1">
                     Vocab Cards

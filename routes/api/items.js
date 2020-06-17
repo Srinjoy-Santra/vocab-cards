@@ -11,7 +11,7 @@ const Item = require('../../models/Item');
     @access Public
 */
 router.get('/', (req, res) => {
-    let { start, range } = req.query;
+    let { start, range, onlyWord } = req.query;
     Item.find()  
         .then(items => {
 
@@ -20,6 +20,9 @@ router.get('/', (req, res) => {
                 range = parseInt(range)
                 items = items.slice(start, start + range)
             }
+
+            if(onlyWord === 'true')
+                items = items.map(item => item.word)
                     
             return res.json(items)
         })
