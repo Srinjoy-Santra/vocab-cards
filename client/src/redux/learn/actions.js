@@ -1,12 +1,8 @@
 import types from './types';
 import axios from 'axios';
 
-const wordsInstance = axios.create({
-    baseURL: 'http://localhost:5000'
-})
-
 const getWords = (dispatch, page) =>
-    wordsInstance
+    axios
         .get('/api/items',{
             params: {
                 start: page*20 || 0,
@@ -24,7 +20,7 @@ const getWords = (dispatch, page) =>
         });
 
 const getWord = (dispatch, id) =>
-    wordsInstance
+    axios
         .get(`/api/items/${id}`)
         .then(word => dispatch(
             {
@@ -39,6 +35,5 @@ const getWord = (dispatch, id) =>
 export default {
     getWords,
     getWord,
-    wordsInstance
 }
         

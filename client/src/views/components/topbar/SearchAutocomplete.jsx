@@ -5,8 +5,8 @@ import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import axios from 'axios';
 
-import { learnActions } from "../../../redux/learn";
 import { alertActions } from "../../../redux/alert";
 
 const useStyles = makeStyles((theme) => ({
@@ -60,7 +60,7 @@ const SearchAutocomplete = (props) => {
 
   useEffect(() => {
     (async () => {
-      let result = await learnActions.wordsInstance.get('/api/items');
+      let result = await axios.get('/api/items');
       try{
       setData(result.data.map(item => (
         {"title": item.word, "id":item._id}
