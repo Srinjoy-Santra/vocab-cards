@@ -22,7 +22,7 @@ const useStyles = makeStyles({
     },
     paper: {
         position: 'absolute',
-        margin: 'auto',
+        textAlign: 'center',
         top: 16
     }
 });
