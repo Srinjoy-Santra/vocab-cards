@@ -20,6 +20,8 @@ const useStyles = makeStyles(theme => ({
         maxWidth: 240,
         justifyContent: 'center',
         margin: 'auto',
+        marginTop: 8,
+        marginBottom: 8,
         paddingTop: 8
     }
 }));
@@ -29,7 +31,7 @@ export default function WordPagination(props) {
     const { START, END, RANGE } = PAGE_CONSTANTS;
     
     return (
-        <Paper className={classes.controls} elevation={3} >
+        <Paper className={classes.controls} >
             <IconButton
                     aria-label="previous page"
                     color="secondary"

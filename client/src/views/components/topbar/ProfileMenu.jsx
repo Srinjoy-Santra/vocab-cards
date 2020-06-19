@@ -6,6 +6,7 @@ import Menu from '@material-ui/core/Menu';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
 import { useDispatch } from 'react-redux';
+import Tooltip from '@material-ui/core/Tooltip';
 
 import { authActions } from "../../../redux/auth";
 
@@ -37,24 +38,28 @@ export default function ProfileMenu(props) {
             {
                 props.auth ?
                     <Fragment>
-                        <IconButton
-                            aria-label="quiz feature"
-                            aria-controls="menu-appbar"
-                            onClick={console.log("Quiz")}
-                            color="inherit"
-                            disabled
-                        >
-                            <QuestionAnswerIcon />
-                        </IconButton>
-                        <IconButton
-                            aria-label="account of current user"
-                            aria-controls="menu-appbar"
-                            aria-haspopup="true"
-                            onClick={handleMenu}
-                            color="inherit"
-                        >
-                            <AccountCircle />
-                        </IconButton>
+                        <Tooltip title="quiz">
+                            <IconButton
+                                aria-label="quiz feature"
+                                aria-controls="menu-appbar"
+                                onClick={console.log("Quiz")}
+                                color="inherit"
+                                disabled
+                            >
+                                <QuestionAnswerIcon />
+                            </IconButton>
+                        </Tooltip>
+                        <Tooltip title="account">
+                            <IconButton
+                                aria-label="account of current user"
+                                aria-controls="menu-appbar"
+                                aria-haspopup="true"
+                                onClick={handleMenu}
+                                color="inherit"
+                            >
+                                <AccountCircle />
+                            </IconButton>
+                        </Tooltip>
                         <Menu
                             id="menu-appbar"
                             anchorEl={anchorEl}
@@ -76,14 +81,16 @@ export default function ProfileMenu(props) {
                     </Fragment>
                     :
                     <Fragment>
-                        <IconButton
-                            aria-label="login current user"
-                            aria-controls="button-appbar"
-                            onClick={openAuthModal}
-                            color="inherit"
-                        >
-                            <PersonAddIcon />
-                        </IconButton>
+                        <Tooltip title="login">
+                            <IconButton
+                                aria-label="login current user"
+                                aria-controls="button-appbar"
+                                onClick={openAuthModal}
+                                color="inherit"
+                            >
+                                <PersonAddIcon />
+                            </IconButton>
+                        </Tooltip>
                     </Fragment>
             }
 

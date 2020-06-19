@@ -117,7 +117,7 @@ const RegisterForm = (props) => {
                                 </Grid>
                                 <Grid item style={{ marginTop: 16 }}>
                                     <Button
-                                        variant="contained"
+                                        variant="outlined"
                                         color="secondary"
                                         onClick={props.toggle}
                                     >

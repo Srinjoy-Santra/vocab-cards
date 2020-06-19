@@ -71,6 +71,7 @@ const Learn = () => {
     return (
         <div>
             <AppBar />
+            <WordPagination handleMovePage={handleMovePage} page={page} />
             <Grid container>
                 { false &&
                     <Fragment>

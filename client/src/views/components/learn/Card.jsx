@@ -55,7 +55,7 @@ export default function WordCard(props) {
             msg: {
               msg: "Login to learn more"
             },
-            status: 0,
+            status: 'f0',
             id: 'Learn-More-Disabled',
             severity: 'info'
           })

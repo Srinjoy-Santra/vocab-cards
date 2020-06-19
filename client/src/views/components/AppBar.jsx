@@ -6,7 +6,6 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import MenuBookIcon from '@material-ui/icons/MenuBook';
 import { useSelector } from 'react-redux';
-
 import SearchAutocomplete from "./topbar/SearchAutocomplete";
 import ProfileMenu from "./topbar/ProfileMenu";
 
