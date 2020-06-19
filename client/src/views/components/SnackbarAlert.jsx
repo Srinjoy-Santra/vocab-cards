@@ -26,9 +26,10 @@ const SnackbarAlert = (props) => {
                 onClose={handleSnackbarClose} 
             >
                 <Alert onClose={handleSnackbarClose} severity={severity}>
-                    {status +": "+ msg}
+                    {msg}
                 </Alert>
             </Snackbar>
+            {console.log(msg,". status code", status)}
         </div>
     )
 }

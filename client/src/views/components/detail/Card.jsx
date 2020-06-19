@@ -27,7 +27,7 @@ const useStyles = makeStyles({
     },
     media: {
         height: 280,
-        width: 550
+        width: '100%'
     },
     opos: {
         marginTop: 12,
@@ -71,24 +71,33 @@ export default function WordCard(props) {
                         </Typography>
                     </Grid>
                 </Grid>
-                <Grid container>
-                    <Grid item xs={12} md={6} className={classes.nyms}>
-                        <Typography className={classes.opos} color="textSecondary">
-                            Synonyms
-                        </Typography>
-                        <Typography variant="body2" component="p">
-                            {synonyms.join(', ')}
-                        </Typography>
-                    </Grid>
-                    <Grid item xs={12} md={6}>
-                        <Typography className={classes.opos} color="textSecondary">
-                            Antonyms
-                        </Typography>
-                        <Typography variant="body2" component="p">
-                            {antonyms.join(', ')}
-                        </Typography>
-                    </Grid>
+                {
+                    ( synonyms.length > 0 || antonyms.length > 0 ) && 
+                    <Grid container>
+                        {
+                            synonyms.length > 0 &&
+                            <Grid item xs={12} md={6} className={classes.nyms}>
+                                <Typography className={classes.opos} color="textSecondary">
+                                    Synonyms
+                                </Typography>
+                                <Typography variant="body2" component="p">
+                                    {synonyms.join(', ')}
+                                </Typography>
+                            </Grid>
+                        }
+                        {
+                            antonyms.length > 0 &&
+                            <Grid item xs={12} md={6}>
+                                <Typography className={classes.opos} color="textSecondary">
+                                    Antonyms
+                                </Typography>
+                                <Typography variant="body2" component="p">
+                                    {antonyms.join(', ')}
+                                </Typography>
+                            </Grid>
+                        }
                 </Grid>
+                }
             </CardContent>
         </Card>
     );

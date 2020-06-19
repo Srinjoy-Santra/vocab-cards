@@ -23,7 +23,8 @@ router.get('/', (req, res) => {
 
             if(onlyWord === 'true')
                 items = items.map(item => item.word)
-                    
+            
+            items = items.map(({ _id, word, grammar, meaning, category, img_url }) => ({ _id, word, grammar, meaning, category, img_url }))
             return res.json(items)
         })
         .catch(err => res.status(500).send("There was a problem finding the items.", err))

@@ -1,5 +1,4 @@
 import Card from '../components/detail/Card';
-import Paper from '../components/detail/Paper';
 import Tab from '../components/detail/Tab';
 import AppBar from '../components/AppBar';
 import { learnActions } from "../../redux/learn/";
@@ -57,7 +56,7 @@ export default function Detail() {
         <div className={classes.root} key={word}>
             <AppBar />
             <Grid container spacing={2} className={classes.container}>
-                <Grid item xs={12} lg={5} className={classes.card}>
+                <Grid item xs={12} lg={6} className={classes.card}>
                     { cardData.word &&
                         <Card
                             category={cardData.category}
@@ -70,24 +69,17 @@ export default function Detail() {
                         />
                     }
                 </Grid>
-                <Grid item className={classes.content} xs={12} lg={3}>
-                    { cardData.word && 
-                        <Paper
-                            word={cardData.word}
-                            sentences={cardData.sentences}
-                            mnemonic={cardData.mnemonic}
-                        />
-                    }
-                </Grid>
-                <Grid item xs={12} lg={4} >
+                <Grid item xs={12} lg={6} >
                     {
-                        cardData.cartoon && cardData.movie_links
-                        && cardData.tv_links &&
+                        cardData.sentences && cardData.cartoon && cardData.movie_links
+                        && cardData.tv_links && 
                         <Tab
                         tvLinks={ cardData.tv_links }
                         movieLinks={ cardData.movie_links }
                         cartoon={ cardData.cartoon }
                         word={ cardData.word }
+                        sentences={ cardData.sentences }
+                        mnemonic={ cardData.mnemonic }
                         />
                     }
                 </Grid>

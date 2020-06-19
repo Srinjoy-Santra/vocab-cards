@@ -28,10 +28,10 @@ export default function CartoonPaper(props){
 
     return (
         <Grid container className={classes.root}>
-            <Grid item xs={8}>
+            <Grid item sm={8}>
                 <img src={cartoon} alt={word} className={classes.cartoon}/>
             </Grid>
-            <Grid item xs={4} className={classes.link}>
+            <Grid item sm={4} className={classes.link}>
                 <Typography variant="subtitle1" component="p">
                     Source:
                     <br/>

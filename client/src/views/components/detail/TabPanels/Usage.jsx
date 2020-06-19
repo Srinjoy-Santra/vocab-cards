@@ -1,17 +1,15 @@
 import ExpansionPanel from './sentences/ExpansionPanel';
 import Highlight from './sentences/Highlight';
 
-import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles({
-    paper: {
-        width: 275,
+    root: {
         //minHeight: 326,
-        marginTop: 8,
-        padding: 12
+        margin: 8,
+        padding: 24
     },
     pos: {
         marginTop: 12,
@@ -20,13 +18,13 @@ const useStyles = makeStyles({
 
 
 
-export default function WordPaper(props){
+export default function Usage(props){
 
     const classes = useStyles();
     const { word, sentences, mnemonic } = props;
 
     return (
-        <Paper className={classes.paper}>
+        <div className={classes.root}>
             <Typography className={classes.pos} color="textSecondary">
                 Example
             </Typography>
@@ -40,6 +38,6 @@ export default function WordPaper(props){
             <Typography variant="subtitle1" component="p">
                 {mnemonic}
             </Typography>
-        </Paper>
+        </div>
     )
 }

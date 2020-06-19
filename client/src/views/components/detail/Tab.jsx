@@ -1,5 +1,6 @@
 import Cartoon from './TabPanels/Cartoon';
 import Video from './TabPanels/Video';
+import Usage from './TabPanels/Usage';
 
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
@@ -9,11 +10,14 @@ import Tab from '@material-ui/core/Tab';
 import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
 import TvIcon from '@material-ui/icons/Tv';
 import MovieIcon from '@material-ui/icons/Movie';
+import TextFieldsIcon from '@material-ui/icons/TextFields';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    width: 500,
+    maxWidth: 550,
+    minHeight: 350,
+    margin: 8,
     backgroundColor: theme.palette.background.paper,
   },
 }));
@@ -26,7 +30,7 @@ export default function ExternalTab(props) {
     setValue(newValue);
   };
 
-  const { word, cartoon, tvLinks, movieLinks } = props;
+  const { word, cartoon, tvLinks, movieLinks, sentences, mnemonic } = props;
   return (
     <Paper square className={classes.root}>
       <Tabs
@@ -39,13 +43,15 @@ export default function ExternalTab(props) {
         variant="scrollable"
         scrollButtons="auto"
       >
+        { sentences && <Tab icon={<TextFieldsIcon />} aria-label="sentence"/>}
         { cartoon && <Tab icon={<InsertEmoticonIcon />} aria-label="cartoon"/> }
         { ( movieLinks && movieLinks.length > 0 ) && <Tab icon={<MovieIcon />} aria-label="movie"/> }
         { ( tvLinks && tvLinks.length > 0 ) && <Tab icon={<TvIcon />} aria-label="tv"/> }
       </Tabs>
-      { value === 0 && <Cartoon cartoon={cartoon} word={word}/> }
-      { value === 1 && <Video videos={movieLinks} word={word}/> }
-      { value === 2 && <Video videos={tvLinks} word={word}/> }
+      { value === 0 && <Usage sentences={sentences} mnemonic={mnemonic} word={word}/> }
+      { value === 1 && <Cartoon cartoon={cartoon} word={word}/> }
+      { value === 2 && <Video videos={movieLinks} word={word}/> }
+      { value === 3 && <Video videos={tvLinks} word={word}/> }
        
     </Paper>
   );
