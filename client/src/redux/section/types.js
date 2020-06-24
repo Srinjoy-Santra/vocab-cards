@@ -1,4 +1,4 @@
-const CHANGE_SECTION = 'learn-controls/change-section';
-const CHANGE_PAGE = 'learn-controls/change-page';
+const CHANGE_SECTION = 'section-controls/change';
 
-export default { CHANGE_SECTION, CHANGE_PAGE };
+
+export default { CHANGE_SECTION };

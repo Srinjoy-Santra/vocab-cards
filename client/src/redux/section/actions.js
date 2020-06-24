@@ -8,16 +8,6 @@ const setSection = (dispatch, sectionName) =>
         });
 
 
- 
-const setPage = (dispatch, pageNumber) =>
-    dispatch(
-        {
-            type: types.CHANGE_PAGE,
-            payload: pageNumber
-        }
-    )
-
 export default {
-    setSection,
-    setPage
+    setSection
 }

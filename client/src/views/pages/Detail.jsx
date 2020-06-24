@@ -52,6 +52,7 @@ export default function Detail() {
              
         })()
     }, [word])
+    
     return (
         <div className={classes.root} key={word}>
             <AppBar />
@@ -71,8 +72,8 @@ export default function Detail() {
                 </Grid>
                 <Grid item xs={12} lg={6} >
                     {
-                        cardData.sentences && cardData.cartoon && cardData.movie_links
-                        && cardData.tv_links && 
+                        ((cardData.sentences && cardData.sentences.my) || (cardData.cartoon && cardData.movie_links
+                        && cardData.tv_links)) && 
                         <Tab
                         tvLinks={ cardData.tv_links }
                         movieLinks={ cardData.movie_links }

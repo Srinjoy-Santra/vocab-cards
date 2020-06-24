@@ -43,6 +43,7 @@ export default function ExternalTab(props) {
         variant="scrollable"
         scrollButtons="auto"
       >
+        {console.log(sentences)}
         { sentences && <Tab icon={<TextFieldsIcon />} aria-label="sentence"/>}
         { cartoon && <Tab icon={<InsertEmoticonIcon />} aria-label="cartoon"/> }
         { ( movieLinks && movieLinks.length > 0 ) && <Tab icon={<MovieIcon />} aria-label="movie"/> }

@@ -7,7 +7,12 @@ import * as reducers from "./index";
 export const INITIAL_STATE = {
     section: {
         current: "All",
-        page: 0
+    },
+    page: {
+        current: 0,
+        startIndex: 0,
+        endIndex: 99,
+        itemsPerPage: 20
     },
     learn: {
         current: {},
