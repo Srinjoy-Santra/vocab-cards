@@ -11,8 +11,6 @@ import { useParams } from "react-router-dom";
 import grey from '@material-ui/core/colors/grey';
 
 const color = grey[800];
-console.log(color);
-
 
 const useStyles = makeStyles({
     root: {

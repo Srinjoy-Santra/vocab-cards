@@ -9,10 +9,9 @@ import Select from '@material-ui/core/Select';
 import { Grid } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 
-//import { cardsData } from '../../redux/testData';
 import { sectionActions } from "../../redux/section/";
+import { pageActions } from "../../redux/page/";
 import { learnActions } from "../../redux/learn/";
-import PAGE_CONSTANTS from "../../utils/pagination";
 import WordPagination from "../components/learn/Pagination";
 import AuthModal from "../components/AuthModal";
 
@@ -39,8 +38,8 @@ const Learn = () => {
     );
 
     const cardsData = useSelector(state => state.learn.all);
-    const page = useSelector(state => state.section.page);
-
+    const { current: page, startIndex, endIndex, itemsPerPage } = useSelector(state => state.page);   
+    
     useEffect(() => {
         (async () => {
             await learnActions.getWords(dispatch, page)
@@ -54,15 +53,15 @@ const Learn = () => {
         sectionActions.setSection(dispatch, sectionName);
     }
 
-    const { START, END, RANGE } = PAGE_CONSTANTS;
-    const handleMovePage = (isNext) => {
+    
+    const handleMovePage = (event, value) => {
 
-        if (isNext && (page + 1) * RANGE < END) {
-            sectionActions.setPage(dispatch, page + 1)
-        }
-        else if ((page - 1) * RANGE >= START) {
-            sectionActions.setPage(dispatch, page - 1)
-        }
+        value = value - 1
+        console.log('handler', value, page)
+        if(value > page && value * itemsPerPage < endIndex)
+            pageActions.setCurrentPage(dispatch, value)
+        else if (value * itemsPerPage >= startIndex)
+            pageActions.setCurrentPage(dispatch, value)
 
     }
 

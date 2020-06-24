@@ -11,7 +11,7 @@ const setCurrentPage = (dispatch, pageNumber) =>
 const setIndices = (dispatch, indices) =>
     dispatch(
         {
-            type: types.CHANGE_PAGE,
+            type: types.SET_INDICES,
             payload: indices
         }
     )

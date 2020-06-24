@@ -1,59 +1,40 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
-import IconButton from '@material-ui/core/IconButton'
-import SkipNextIcon from '@material-ui/icons/SkipNext';
-import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
-
-import PAGE_CONSTANTS from '../../../utils/pagination';
-import { Paper, Typography } from '@material-ui/core';
+import Pagination from '@material-ui/lab/Pagination';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 const useStyles = makeStyles(theme => ({
     text: {
-        padding: 8,
+        padding: 4,
         textAlign: "center"
     },
     controls: {
-        display: 'flex',
-        alignItems: 'center',
-        paddingLeft: theme.spacing(1),
-        paddingBottom: theme.spacing(1),
-        maxWidth: 240,
-        justifyContent: 'center',
+        maxWidth: 346,
         margin: 'auto',
         marginTop: 8,
         marginBottom: 8,
-        paddingTop: 8
+        padding: 'theme.spacing(1)',
+        display: 'flex',
+        justifyContent: 'center'
     }
 }));
 
 export default function WordPagination(props) {
     const classes = useStyles();
-    const { START, END, RANGE } = PAGE_CONSTANTS;
-    
+    const { startIndex: START, endIndex: END, range: RANGE } = useSelector(state => state.page);
+    const matches = useMediaQuery('(max-width:346px)');
+
     return (
-        <Paper className={classes.controls} >
-            <IconButton
-                    aria-label="previous page"
-                    color="secondary"
-                    edge="end"
-                    className={classes.nextButton}
-                    onClick={()=>props.handleMovePage(false)}
-                    disabled={props.page === START/RANGE}
-                >
-                    <SkipPreviousIcon/>
-            </IconButton>
-            <Typography className={classes.text} variant="subtitle1" color="secondary">
-                {props.page + 1}/5
-            </Typography>
-            <IconButton
-                    aria-label="next page"
-                    color="secondary"
-                    className={classes.nextButton}
-                    onClick={()=>props.handleMovePage(true)}
-                    disabled={props.page === parseInt((END/RANGE))}   
-            >
-                <SkipNextIcon/>
-            </IconButton>
-        </Paper>
+        <div className={classes.controls} >
+            <Pagination
+                count={Math.ceil((END+1-START)/RANGE)}
+                page={props.page+1}
+                onChange={props.handleMovePage}
+                variant="outlined" color="secondary"
+                size={matches?"small":'medium'}
+                siblingCount={matches?0:1}
+                 />
+        </div>
     );
 }

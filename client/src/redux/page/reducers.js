@@ -6,8 +6,8 @@ const pageReducers = (state = INITIAL_STATE.page, action) => {
         case types.CHANGE_PAGE:
             return { ...state, current: parseInt(action.payload) };
         case types.SET_INDICES:
-            const { start, end } = action.payload;
-            return { ...state, startIndex: parseInt(start), endIndex: parseInt(end) }
+            const { start, end, range } = action.payload;
+            return { ...state, startIndex: parseInt(start), endIndex: parseInt(end), range: parseInt(range) }
         default:
             return state;
     }

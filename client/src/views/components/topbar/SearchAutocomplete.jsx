@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 import axios from 'axios';
 
 import { alertActions } from "../../../redux/alert";
+import { pageActions } from "../../../redux/page";
 
 const useStyles = makeStyles((theme) => ({
   search: {
@@ -62,9 +63,14 @@ const SearchAutocomplete = (props) => {
     (async () => {
       let result = await axios.get('/api/items?wordOnly=true');
       try{
-      setData(result.data.map(item => (
-        {"title": item.word, "id":item.word.toLowerCase()}
-      )));
+        setData(
+          result.data.map(item => ({
+          title: item.word, id: item.word.toLowerCase()
+        })));
+
+        await pageActions.setIndices(dispatch, {
+          start: 0, end: result.data.length, range: 20
+        })
       }
       catch(err){
         console.log(err);
