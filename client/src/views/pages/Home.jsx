@@ -3,11 +3,12 @@ import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import CastForEducationIcon from '@material-ui/icons/CastForEducation';
+import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { Link as RouterLink } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { authActions } from "../../redux/auth/";
 import AuthModal from "../components/AuthModal";
@@ -58,6 +59,8 @@ const Home = () => {
 
     const classes = useStyles();
     const dispatch = useDispatch();
+    const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
+
     const openAuthModal = () => {
         authActions.setAuthModal(dispatch, true);
     }
@@ -71,12 +74,23 @@ const Home = () => {
                 aligntItems="right"
                 className={classes.imgContainer}
             >
-                {/* <img src="https://source.unsplash.com/JXb5j1vdWSI/1600X900" alt="Jr Korpa on Unsplash" className={classes.responsiveImage}></img> */}
                 <div className={classes.content}>
                     <Typography variant="h2" component="h1">
                         Vocab Cards
                     </Typography>
                     <div>
+                        {
+                        isAuthenticated ?
+                        <Button
+                            variant="contained"
+                            color="secondary"
+                            className={classes.button}
+                            startIcon={<VerifiedUserIcon />}
+                            disabled
+                        >
+                            Verified
+                        </Button>
+                        :
                         <Button
                             variant="outlined"
                             color="secondary"
@@ -85,7 +99,8 @@ const Home = () => {
                             onClick={openAuthModal}
                         >
                             Login
-                    </Button>
+                        </Button>
+                        }
                         <Button
                             variant="outlined"
                             color="secondary"
