@@ -50,8 +50,7 @@ A web application to learn advanced English vocabulary with the aid of stunning 
 ## Deployment
 
 The website is temporarily hosted on heroku.
-
-[The vocabulary application ](https://fathomless-springs-48508.herokuapp.com/)
+[The vocabulary application ](https://vocab-cards-of-srinjoy.herokuapp.com/)
 
 
 
