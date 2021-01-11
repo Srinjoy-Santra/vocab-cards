@@ -1,4 +1,4 @@
-# Vocab App
+# Vocabulary Cards App
 
 A web application to learn advanced English vocabulary with the aid of stunning images and usages across various forms of media.
 
